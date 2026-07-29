@@ -1,145 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Grace ❤️</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Grace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
 
-<div class="stars"></div>
-
-<section class="hero">
-
-<h2>✨ Happy Birthday ✨</h2>
-
-<h1>Grace ❤️</h1>
-
-<p>
-A little surprise made with love by Bonaldi
-</p>
-
-<button id="startBtn">
-Start The Journey
-</button>
-
-</section>
-
-<section class="hidden story" id="story">
-
-<h2>Dear Grace 💌</h2>
-
-<p id="typing"></p>
-
-<button class="next" id="nextPhoto">
-Continue ❤️
-</button>
-
-</section>
-
-<section class="hidden gallery" id="gallery">
-
-<h2>Our Memories 📸</h2>
-
-<div class="photos">
-
-<img src="assets/grace1.jpg">
-
-<img src="assets/grace2.jpg">
-
-<img src="assets/grace3.jpg">
-
-<img src="assets/grace4.jpg">
-
-<img src="assets/grace5.jpg">
-
-<img src="assets/grace6.jpg">
-
-<img src="assets/grace7.jpg">
-
+<!-- ============ SECTION 1 : LOADING SCREEN ============ -->
+<div id="loading-screen">
+  <canvas id="loading-stars"></canvas>
+  <div class="loading-content">
+    <div class="loading-heart">❤</div>
+    <p class="loading-text">Preparing a little surprise<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
 </div>
 
-<button class="next" id="nextWish">
-Next ❤️
+<!-- floating music toggle -->
+<button id="music-toggle" aria-label="Play or pause music" class="hidden">
+  <span class="music-icon play-icon">♪</span>
+  <span class="music-icon pause-icon">❚❚</span>
 </button>
 
-</section>
+<audio id="bg-music" src="assets/music.mp3" loop preload="auto"></audio>
 
-<section class="hidden wishes" id="wishes">
+<main id="main-content">
 
-<h2>Happy Birthday ❤️</h2>
+  <!-- ============ SECTION 2 : HERO ============ -->
+  <section id="hero" class="section galaxy-bg">
+    <canvas id="hero-stars"></canvas>
+    <div class="hearts-layer" id="hearts-layer"></div>
+    <div class="glow glow-purple"></div>
+    <div class="glow glow-pink"></div>
 
-<p>
+    <div class="hero-content">
+      <p class="eyebrow">a little universe, just for you</p>
+      <h1 class="hero-title">
+        Happy Birthday
+        <span class="script-name">Grace <span class="heart-emoji">❤</span></span>
+      </h1>
+      <p class="hero-subtitle">A little universe made with love.</p>
+      <button id="start-journey" class="btn btn-primary">
+        <span>Start The Journey</span>
+      </button>
+    </div>
 
-May God always bless your life.
+    <div class="scroll-hint">
+      <span></span>
+    </div>
+  </section>
 
-May every dream come true.
+  <!-- ============ SECTION 3 : LOVE LETTER ============ -->
+  <section id="letter" class="section dark-bg">
+    <div class="glow glow-blue glow-soft"></div>
+    <div class="letter-wrap glass-card">
+      <p class="section-eyebrow">a letter for you</p>
+      <div id="letter-text" class="letter-text"></div>
+      <button id="continue-letter" class="btn btn-secondary reveal-on-done">
+        <span>Continue</span>
+      </button>
+    </div>
+  </section>
 
-May your smile never fades.
+  <!-- ============ SECTION 4 : PHOTO GALLERY ============ -->
+  <section id="gallery" class="section dark-bg">
+    <div class="section-header">
+      <p class="section-eyebrow">every moment, treasured</p>
+      <h2 class="section-title">Beautiful Memories</h2>
+    </div>
 
-Thank you for coming into my life.
+    <div class="gallery-grid" id="gallery-grid">
+      <figure class="gallery-card"><img src="assets/grace1.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace2.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace3.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace4.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace5.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace6.jpg" alt="Memory with Grace" loading="lazy"></figure>
+      <figure class="gallery-card"><img src="assets/grace7.jpg" alt="Memory with Grace" loading="lazy"></figure>
+    </div>
+  </section>
 
-I Love You Grace.
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="Enlarged memory">
+  </div>
 
-❤️
+  <!-- ============ SECTION 5 : THINGS I LOVE ABOUT YOU ============ -->
+  <section id="love-list" class="section dark-bg">
+    <div class="section-header">
+      <p class="section-eyebrow">a short, incomplete list</p>
+      <h2 class="section-title">Things I Love About You</h2>
+    </div>
 
-</p>
+    <div class="love-grid" id="love-grid">
+      <div class="love-card"><span class="love-icon">✧</span><h3>Your Smile</h3></div>
+      <div class="love-card"><span class="love-icon">✦</span><h3>Your Kindness</h3></div>
+      <div class="love-card"><span class="love-icon">✧</span><h3>Your Strength</h3></div>
+      <div class="love-card"><span class="love-icon">✦</span><h3>Your Caring Heart</h3></div>
+      <div class="love-card"><span class="love-icon">✧</span><h3>Your Beautiful Eyes</h3></div>
+      <div class="love-card"><span class="love-icon">✦</span><h3>Your Laugh</h3></div>
+      <div class="love-card love-card-wide"><span class="love-icon">❤</span><h3>Everything About You</h3></div>
+    </div>
+  </section>
 
-<div class="gift">
+  <!-- ============ SECTION 6 : BIRTHDAY WISHES ============ -->
+  <section id="wishes" class="section galaxy-bg">
+    <canvas id="wishes-stars"></canvas>
+    <div class="glow glow-purple glow-soft"></div>
+    <div class="wishes-card glass-card" id="wishes-card">
+      <p class="section-eyebrow">a wish, whispered to the stars</p>
+      <p class="wish-line" data-line>Happy Birthday Grace.</p>
+      <p class="wish-line" data-line>May this new chapter of your life be filled with love, peace, happiness, health and endless blessings.</p>
+      <p class="wish-line" data-line>Never stop smiling.</p>
+      <p class="wish-line" data-line>Never stop believing.</p>
+      <p class="wish-line" data-line>Always remember that someone is always praying for your happiness.</p>
+      <p class="wish-signature" data-line>— Bonaldi</p>
+    </div>
+  </section>
 
-🎁
+  <!-- ============ SECTION 7 : GIFT BOX ============ -->
+  <section id="gift" class="section dark-bg">
+    <canvas id="gift-fx" class="gift-fx-canvas"></canvas>
+    <div class="section-header">
+      <p class="section-eyebrow">one more thing</p>
+      <h2 class="section-title" id="gift-title">A Little Gift For You</h2>
+    </div>
 
-</div>
+    <div class="gift-box-wrap" id="gift-box-wrap">
+      <div class="gift-box" id="gift-box">
+        <div class="gift-lid"></div>
+        <div class="gift-base"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-ribbon-h"></div>
+        <div class="gift-bow"></div>
+      </div>
+      <p class="gift-hint" id="gift-hint">tap the gift</p>
+    </div>
 
-<button class="next" id="openGift">
+    <div class="gift-message hidden" id="gift-message">
+      <p>You are my favorite person in this whole universe. ✨</p>
+    </div>
+  </section>
 
-Open Gift
+  <!-- ============ SECTION 8 : FINAL SCREEN ============ -->
+  <section id="final" class="section final-section">
+    <canvas id="final-stars"></canvas>
+    <div class="final-photo">
+      <img src="assets/grace5.jpg" alt="Grace">
+      <div class="final-photo-overlay"></div>
+    </div>
 
-</button>
+    <div class="final-content">
+      <h2 class="final-title">Happy Birthday Grace <span class="heart-emoji">❤</span></h2>
+      <p class="final-small">
+        Thank you<br>
+        for every smile,<br>
+        every memory,<br>
+        every moment.
+      </p>
+      <p class="final-grateful">I will always be grateful.</p>
+      <p class="final-love">Love,<br><span class="script-signature">Bonaldi</span></p>
 
-</section>
+      <button id="replay-journey" class="btn btn-primary">
+        <span>Replay Journey</span>
+      </button>
+    </div>
+  </section>
 
-<section class="hidden ending" id="ending">
-
-<h1>🎉 Happy Birthday 🎉</h1>
-
-<h2>Grace ❤️</h2>
-
-<p>
-
-Thank You
-
-For Every Smile
-
-For Every Moment
-
-For Everything
-
-</p>
-
-<h3>
-
-Forever Yours,
-
-Bonaldi ❤️
-
-</h3>
-
-</section>
-
-<audio id="music" loop>
-
-<source src="assets/music.mp3" type="audio/mp3">
-
-</audio>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
